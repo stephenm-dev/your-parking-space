@@ -6,6 +6,7 @@ import 'package:your_parking_space/features/ip_lookup/domain/usercases/get_ip_lo
 import 'package:your_parking_space/features/ip_lookup/presentation/bloc/ip_lookup_bloc.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/app_button.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/app_text_field.dart';
+import 'package:your_parking_space/features/ip_lookup/presentation/widgets/ip_location_error.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/ip_location_result.dart';
 
 class IpLookupPage extends StatelessWidget {
@@ -47,7 +48,17 @@ class IpLookupView extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppButton(
-                    text: 'Lookup IP',
+                    text: 'Lookup my IP',
+                    onPressed: () {
+                      context.read<IpLookupBloc>().add(
+                        FetchIpLocation(),
+                      );
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: AppButton(
+                    text: 'Lookup specific IP',
                     onPressed: () {
                       context.read<IpLookupBloc>().add(
                         FetchIpLocation(
@@ -57,34 +68,27 @@ class IpLookupView extends StatelessWidget {
                     },
                   ),
                 ),
-                Expanded(
-                  child: AppButton(
-                    text: 'Get My Current IP',
-                    onPressed: () {
-                      context.read<IpLookupBloc>().add(
-                        FetchIpLocation(),
-                      );
-                    },
-                  ),
-                ),
               ],
             ),
             const Divider(),
-            BlocBuilder<IpLookupBloc, IpLookupState>(
-              builder: (_, state) {
-                switch (state) {
-                  case IpLookupInitial():
-                    return const SizedBox.shrink();
-                  case IpLookupLoading():
-                    return const SizedBox.shrink();
-                  case IpLookupSuccess():
-                    return IpLocationResult(
-                      ipLocation: state.ipLocation,
-                    );
-                  case IpLookupError():
-                    return const SizedBox.shrink();
-                }
-              },
+            Expanded(
+              child: BlocBuilder<IpLookupBloc, IpLookupState>(
+                builder: (_, state) {
+                  switch (state) {
+                    case IpLookupInitial():
+                    case IpLookupLoading():
+                      return const SizedBox.shrink();
+                    case IpLookupSuccess():
+                      return IpLocationResult(
+                        ipLocation: state.ipLocation,
+                      );
+                    case IpLookupError():
+                      return IpLocationError(
+                        message: state.message,
+                      );
+                  }
+                },
+              ),
             ),
           ],
         ),

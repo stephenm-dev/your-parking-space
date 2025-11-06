@@ -15,4 +15,10 @@ final class IpLookupSuccess extends IpLookupState {
   final IpLocation ipLocation;
 }
 
-final class IpLookupError extends IpLookupState {}
+final class IpLookupError extends IpLookupState {
+  IpLookupError({
+    required this.message,
+  });
+
+  final String message;
+}

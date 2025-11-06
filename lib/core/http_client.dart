@@ -22,12 +22,13 @@ class HttpClient {
                 if (res.statusCode == 200 &&
                     data is Map<String, dynamic> &&
                     data['error'] == true) {
+                  final reason = data['reason'] ?? 'Unknown';
                   return handler.reject(
                     DioException(
                       requestOptions: res.requestOptions,
                       response: res,
                       type: DioExceptionType.badResponse,
-                      message: '${data['reason'] ?? 'Unknown'}',
+                      message: reason.toString(),
                     ),
                   );
                 }

@@ -29,9 +29,10 @@ class IpLocationResult extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {
-                context.push('/map', extra: ipLocation);
-              },
+              onTap: () => context.push(
+                MapRoute().location,
+                extra: ipLocation,
+              ),
               child: Row(
                 children: [
                   Text(
@@ -51,39 +52,59 @@ class IpLocationResult extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('IP: ${ipLocation.ip}'),
+                _IpInfoRow(
+                  label: 'IP Address',
+                  value: ipLocation.ip,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('City: ${ipLocation.city}'),
+                _IpInfoRow(
+                  label: 'City',
+                  value: ipLocation.city,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('Region: ${ipLocation.region}'),
+                _IpInfoRow(
+                  label: 'Region',
+                  value: ipLocation.region,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('Country: ${ipLocation.countryName}'),
+                _IpInfoRow(
+                  label: 'Country',
+                  value: ipLocation.countryName,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('Postal: ${ipLocation.postal}'),
+                _IpInfoRow(
+                  label: 'Postal',
+                  value: ipLocation.postal,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('Latitude: ${ipLocation.latitude ?? '-'}'),
+                _IpInfoRow(
+                  label: 'Latitude',
+                  value: ipLocation.latitude.toString(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text('Longitude: ${ipLocation.longitude ?? '-'}'),
+                _IpInfoRow(
+                  label: 'Longitude',
+                  value: ipLocation.longitude.toString(),
                 ),
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class _IpInfoRow extends StatelessWidget {
+  const _IpInfoRow({
+    required this.label,
+    required this.value,
+  });
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Text(
+        '$label: $value',
+      ),
     );
   }
 }
