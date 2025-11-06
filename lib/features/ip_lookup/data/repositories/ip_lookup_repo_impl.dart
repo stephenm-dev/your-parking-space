@@ -17,7 +17,6 @@ class IpLookupRepoImpl implements IpLookupRepo {
       final res = ip == null || ip.trim().isEmpty
           ? await _ipApiService.lookupMyIp()
           : await _ipApiService.lookupSpecificIp(ip.trim());
-      print(res);
       return res.toEntity();
     } catch (e) {
       rethrow;

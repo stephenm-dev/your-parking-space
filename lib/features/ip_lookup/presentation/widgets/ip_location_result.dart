@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:your_parking_space/features/ip_lookup/domain/entities/ip_location.dart';
 import 'package:your_parking_space/routes/app_routes.dart';
 
@@ -29,12 +30,12 @@ class IpLocationResult extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                MapRoute().push<void>(context);
+                context.push('/map', extra: ipLocation);
               },
               child: Row(
                 children: [
                   Text(
-                    'View in Map',
+                    'View on Map',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
                     ),

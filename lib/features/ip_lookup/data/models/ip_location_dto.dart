@@ -15,8 +15,8 @@ class IpLocationDto {
     this.continentCode,
     required this.inEu,
     this.postal,
-    this.latitude,
-    this.longitude,
+    required this.latitude,
+    required this.longitude,
     this.timezone,
     this.utcOffset,
     this.countryCallingCode,
@@ -48,8 +48,8 @@ class IpLocationDto {
   final bool inEu;
 
   final String? postal;
-  final double? latitude;
-  final double? longitude;
+  final double latitude;
+  final double longitude;
   final String? timezone;
 
   @JsonKey(name: 'utc_offset')

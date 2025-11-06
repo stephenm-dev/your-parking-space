@@ -18,6 +18,6 @@ class IpLocation {
   final String country;
   final String countryName;
   final String postal;
-  final double? latitude;
-  final double? longitude;
+  final double latitude;
+  final double longitude;
 }

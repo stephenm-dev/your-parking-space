@@ -35,7 +35,7 @@ class _IpApiService implements IpApiService {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-  final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late IpLocationDto _value;
     try {
       _value = IpLocationDto.fromJson(_result.data!);

@@ -6,8 +6,7 @@ import 'package:your_parking_space/features/ip_lookup/domain/usercases/get_ip_lo
 import 'package:your_parking_space/features/ip_lookup/presentation/bloc/ip_lookup_bloc.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/app_button.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/app_text_field.dart';
-import 'package:your_parking_space/features/ip_lookup/presentation/widgets/location_result.dart';
-import 'package:your_parking_space/routes/app_routes.dart';
+import 'package:your_parking_space/features/ip_lookup/presentation/widgets/ip_location_result.dart';
 
 class IpLookupPage extends StatelessWidget {
   const IpLookupPage({super.key});
