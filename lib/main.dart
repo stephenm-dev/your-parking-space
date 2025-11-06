@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:your_parking_space/core/http_client.dart';
 import 'package:your_parking_space/routes/app_router.dart';
 
 void main() {
+  HttpClient().init();
   runApp(const MyApp());
 }
 

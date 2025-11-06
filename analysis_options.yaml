@@ -1,8 +1,11 @@
-include: package:flutter_lints/flutter.yaml
+include: package:leancode_lint/analysis_options.yaml
 
 formatter:
   trailing_commas: preserve
 
 linter:
   rules:
- 
+
+analyzer:
+  exclude:
+    - '**/*.g.dart'

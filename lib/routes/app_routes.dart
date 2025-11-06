@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:your_parking_space/features/ip_lookup/ip_lookup_page.dart';
+import 'package:your_parking_space/features/ip_lookup/presentation/ip_lookup_page.dart';
 import 'package:your_parking_space/features/map/map_page.dart';
 
 part 'app_routes.g.dart';

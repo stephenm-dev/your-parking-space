@@ -18,7 +18,7 @@ class MapPage extends StatelessWidget {
       ),
 
       body: FlutterMap(
-        options: MapOptions(
+        options: const MapOptions(
           initialCenter: LatLng(
             51.509364,
             -0.128928,
@@ -40,7 +40,7 @@ class MapPage extends StatelessWidget {
               ),
             ],
           ),
-          MarkerLayer(
+          const MarkerLayer(
             markers: [
               Marker(
                 point: LatLng(
