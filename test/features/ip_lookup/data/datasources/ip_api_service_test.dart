@@ -47,7 +47,7 @@ void main() {
       final dto = await service.lookupMyIp();
 
       expect(dto, isA<IpLocationDto>());
-      expect(dto.ip, '169.150.218.37');
+      expect(dto.ip, '188.214.9.20');
       verify(() => dio.fetch<Map<String, dynamic>>(any())).called(1);
     });
 
