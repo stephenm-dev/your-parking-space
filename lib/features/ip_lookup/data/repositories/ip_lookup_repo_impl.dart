@@ -6,10 +6,11 @@ import 'package:your_parking_space/features/ip_lookup/domain/repositiories/ip_lo
 class IpLookupRepoImpl implements IpLookupRepo {
   IpLookupRepoImpl({
     required this.dio,
-  });
+    IpApiService? service,
+  }) : _ipApiService = service ?? IpApiService(dio);
 
   final Dio dio;
-  late final _ipApiService = IpApiService(dio);
+  final IpApiService _ipApiService;
 
   @override
   Future<IpLocation> getIpLocation({String? ip}) async {

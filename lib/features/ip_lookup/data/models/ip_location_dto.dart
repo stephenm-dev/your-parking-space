@@ -69,7 +69,6 @@ class IpLocationDto {
     ip: ip,
     city: city ?? '-',
     region: region ?? '-',
-    regionCode: regionCode ?? '-',
     country: country,
     countryName: countryName,
     postal: postal ?? '-',

@@ -3,7 +3,6 @@ class IpLocation {
     required this.ip,
     required this.city,
     required this.region,
-    required this.regionCode,
     required this.country,
     required this.countryName,
     required this.postal,
@@ -14,7 +13,6 @@ class IpLocation {
   final String ip;
   final String city;
   final String region;
-  final String regionCode;
   final String country;
   final String countryName;
   final String postal;

@@ -19,6 +19,7 @@ dependencies:
   json_annotation: ^4.9.0
   latlong2: ^0.9.1
   loader_overlay: ^5.0.0
+  mocktail: ^1.0.4
   retrofit: ^4.9.0
   url_launcher: ^6.3.2
 
