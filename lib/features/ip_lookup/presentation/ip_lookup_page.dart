@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:your_parking_space/core/http_client.dart';
 import 'package:your_parking_space/features/ip_lookup/data/repositories/ip_lookup_repo_impl.dart';
 import 'package:your_parking_space/features/ip_lookup/domain/usercases/get_ip_location.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/bloc/ip_lookup_bloc.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/app_button.dart';
-import 'package:your_parking_space/features/ip_lookup/presentation/widgets/app_text_field.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/ip_location_error.dart';
 import 'package:your_parking_space/features/ip_lookup/presentation/widgets/ip_location_result.dart';
+import 'package:your_parking_space/routes/app_routes.dart';
 
 class IpLookupPage extends StatelessWidget {
   const IpLookupPage({super.key});
@@ -39,9 +41,12 @@ class IpLookupView extends StatelessWidget {
         child: Column(
           spacing: 8,
           children: [
-            AppTextField(
-              labelText: 'IP Address',
+            TextField(
               controller: controller,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'IP Address',
+              ),
             ),
             Row(
               spacing: 16,
@@ -72,7 +77,23 @@ class IpLookupView extends StatelessWidget {
             ),
             const Divider(),
             Expanded(
-              child: BlocBuilder<IpLookupBloc, IpLookupState>(
+              child: BlocConsumer<IpLookupBloc, IpLookupState>(
+                listener: (context, state) {
+                  switch (state) {
+                    case IpLookupInitial():
+                      context.loaderOverlay.hide();
+                    case IpLookupLoading():
+                      context.loaderOverlay.show();
+                    case IpLookupSuccess():
+                      context.loaderOverlay.hide();
+                      context.push(
+                        MapRoute().location,
+                        extra: state.ipLocation,
+                      );
+                    case IpLookupError():
+                      context.loaderOverlay.hide();
+                  }
+                },
                 builder: (_, state) {
                   switch (state) {
                     case IpLookupInitial():
