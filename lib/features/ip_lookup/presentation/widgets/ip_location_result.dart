@@ -46,11 +46,11 @@ class IpLocationResult extends StatelessWidget {
             ),
           ],
         ),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        Flexible(
+          child: Card(
+            child: ListView(
+              padding: const EdgeInsets.all(8),
+              shrinkWrap: true,
               children: [
                 _IpInfoRow(
                   label: 'IP Address',
